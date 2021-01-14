@@ -1,0 +1,30 @@
+{
+	"name": "git-date-extractor-gatsby-demo",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Git-Date-Extractor Gatsby Demo",
+	"author": {
+		"name": "Joshua Tzucker",
+		"url": "https://joshuatz.com/?utm_source=package"
+	},
+	"keywords": [
+		"gatsby"
+	],
+	"scripts": {
+		"develop": "gatsby develop",
+		"start": "gatsby develop",
+		"build": "gatsby build",
+		"serve": "gatsby serve",
+		"clean": "gatsby clean"
+	},
+	"dependencies": {
+		"gatsby": "^2.30.2",
+		"gatsby-plugin-react-helmet": "^3.8.0",
+		"gatsby-plugin-sitemap": "^2.10.0",
+		"gatsby-source-filesystem": "^2.9.0",
+		"gatsby-transformer-remark": "^2.14.0",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-helmet": "^6.1.0"
+	}
+}
