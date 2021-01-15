@@ -15,7 +15,8 @@
 		"start": "gatsby develop",
 		"build": "gatsby build",
 		"serve": "gatsby serve",
-		"clean": "gatsby clean"
+		"clean": "gatsby clean",
+		"dates": "git-date-extractor --outputToFile --onlyIn ./src/posts/"
 	},
 	"dependencies": {
 		"flexboxgrid": "^6.3.1",
@@ -27,5 +28,8 @@
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-helmet": "^6.1.0"
+	},
+	"devDependencies": {
+		"git-date-extractor": "^4.0.1"
 	}
 }

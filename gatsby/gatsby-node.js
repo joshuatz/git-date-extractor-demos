@@ -1,12 +1,17 @@
 // @ts-check
 const { createFilePath } = require('gatsby-source-filesystem');
 const path = require('path');
+const gdeStamps = require('./timestamps.json');
+
+const posixSlash = (input = '') => {
+	return input.split(path.sep).join(path.posix.sep);
+};
 
 /**
  * @param {import("gatsby").CreateNodeArgs} onCreateNodeArgs
  */
 exports.onCreateNode = ({ node, getNode, actions }) => {
-	/** @type {import('gatsby').Node & import('fs').Stats} */
+	/** @type {import('gatsby').Node & import('fs').Stats & {absolutePath: string}} */
 	const fileNode = getNode(node.parent);
 
 	if (node.internal.type === `MarkdownRemark` && fileNode) {
@@ -31,7 +36,19 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 		// Lookup *actual* Git-based creation and modified stamps
 		// These values should be locally cached in a JSON file, instead of looking up each time, for each file.
-		// @TODO
+		// My tool uses (by default) POSIX style slashes
+		const filePathRelativeToRoot = posixSlash(
+			fileNode.absolutePath
+		).replace(`${posixSlash(__dirname)}/`, '');
+
+		const stampEntry = gdeStamps[filePathRelativeToRoot];
+
+		if (stampEntry && stampEntry.created) {
+			stamps = {
+				createdMs: stampEntry.created * 1000,
+				modifiedMs: stampEntry.modified * 1000,
+			};
+		}
 
 		for (const key in stamps) {
 			actions.createNodeField({
@@ -64,7 +81,6 @@ exports.createPages = async ({ graphql, actions }) => {
 			}
 		}
 	`);
-	console.log(result);
 	const allMdRemarkNodes = result.data.allMarkdownRemark.edges.map(
 		(e) => e.node
 	);
