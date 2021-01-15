@@ -1,0 +1,9 @@
+.key {
+	font-weight: bold;
+}
+.val {
+	font-style: italic;
+}
+.field {
+	margin-bottom: 10px;
+}
