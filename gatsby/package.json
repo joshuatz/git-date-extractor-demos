@@ -20,7 +20,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "git diff --cached --name-only --diff-filter=ACMRTUXB -z | xargs -0 git-date-extractor --gitCommitHook=pre --outputToFile=true --projectRootPath='..' --onlyIn=['gatsby/src/posts'] --debug"
+			"pre-commit": "git diff --cached --name-only --diff-filter=ACMRTUXB -z | xargs -0 node update-stamps.js"
 		}
 	},
 	"dependencies": {
